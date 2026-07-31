@@ -1,0 +1,6 @@
+{
+  "name": "CyberDork OSINT Suite v7.0",
+  "description": "Multi-engine dorking portal, 700+ extension search, custom dork builder, OSINT toolkit and interactive terminal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

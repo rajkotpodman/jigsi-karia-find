@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberDork OSINT Suite v7.0 - Ultimate Matrix Edition</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00ff00">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Background Matrix Digital Rain Canvas -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- Top Navigation & Control Header -->
+    <header class="top-header">
+        <div class="brand-title">
+            <h1>⚡ CYBERDORK OSINT SUITE v7.0</h1>
+            <span id="currentUserDisplay" style="color: var(--electric-blue); font-size: 0.85rem;">[GUEST]</span>
+        </div>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab-btn active" data-page="dashboard">⚡ DASHBOARD</button>
+            <button class="nav-tab-btn" data-page="dorks">🎯 CYBERDORK PRO</button>
+            <button class="nav-tab-btn" data-page="extensions">🔍 700+ EXTENSIONS</button>
+            <button class="nav-tab-btn" data-page="toolkit">🛠️ OSINT TOOLKIT</button>
+            <button class="nav-tab-btn" data-page="terminal">💻 TERMINAL CLI</button>
+            <button class="nav-tab-btn" data-page="prohub">🛒 PRO SERVICES</button>
+            <button class="nav-tab-btn" data-page="auth">🔐 AUTH & HISTORY</button>
+        </nav>
+
+        <div class="header-actions">
+            <button class="btn-cyber-small" id="sfxToggleBtn">🔊 SFX ON</button>
+            <button class="btn-cyber-small" id="themeToggleBtn">☀ LIGHT MODE</button>
+        </div>
+    </header>
+
+    <!-- Global Target Intelligence Bar -->
+    <div style="background: rgba(10,15,29,0.95); border-bottom: 1px solid var(--border-green); padding: 12px 20px; position: relative; z-index: 8;">
+        <div style="max-width: 1400px; margin: 0 auto; display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+            <label style="color: var(--electric-blue); font-weight: bold; font-size: 0.9rem; white-space: nowrap;">🎯 PRIMARY TARGET KEYWORD / PHONE / DOMAIN:</label>
+            <input type="text" id="globalTargetInput" class="cyber-input target-sync-input" value="9898048483" placeholder="Type keyword, domain, or phone number..." style="flex: 1; min-width: 250px;">
+        </div>
+    </div>
+
+    <!-- Main Content Viewport -->
+    <main class="main-viewport">
+
+        <!-- Threat Intelligence Marquee -->
+        <div class="threat-ticker">
+            <span style="font-weight: bold; color: var(--neon-pink); white-space: nowrap;">🚨 LIVE THREAT FEED:</span>
+            <div class="ticker-content">
+                [ALERT] Unprotected S3 Bucket Exposing Credentials Detected | [WARNING] Critical CVE-2026-8891 SQL Injection Exploit Chain Active | [INFO] 700+ File Extension Indexes Updated Live | [OSINT] Direct Query Enabled for Target: 9898048483
+            </div>
+        </div>
+
+        <!-- ==================== PAGE 1: DASHBOARD ==================== -->
+        <section id="page-dashboard" class="app-page active">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value" id="statTotalDorks">1000+</div>
+                    <div class="stat-label">Active Dork Commands</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="statTotalExtensions">700+</div>
+                    <div class="stat-label">File Extensions Indexed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">Multi-Engines Integrated</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="dashboardVisitCount">1</div>
+                    <div class="stat-label">Total Session Visits</div>
+                </div>
+            </div>
+
+            <div class="cyber-panel">
+                <div class="panel-header">
+                    <span class="panel-title">🎯 TARGET INTELLIGENCE RADAR (PRE-FILLED TARGET: 9898048483)</span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">
+                    Instantly launch multi-vector OSINT footprinting searches on your configured primary target value.
+                </p>
+                <div id="radarQuickGrid" class="ext-buttons-flex"></div>
+            </div>
+
+            <div class="cyber-panel">
+                <div class="panel-header">
+                    <span class="panel-title">⚙️ CANVAS ANIMATION CONTROLS</span>
+                </div>
+                <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+                    <label style="font-size: 0.85rem;">Matrix Rain Speed:</label>
+                    <input type="range" id="matrixSpeedSlider" min="10" max="90" value="65" style="flex: 1; max-width: 300px;">
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 2: CYBERDORK PRO ==================== -->
+        <section id="page-dorks" class="app-page">
+            <div class="cyber-panel">
+                <div class="panel-header">
+                    <span class="panel-title">🎯 CYBERDORK PRO SEARCH ENGINE</span>
+                    <span id="dorkCounterStats" style="font-size: 0.8rem; color: var(--text-muted);">Loading dorks...</span>
+                </div>
+
+                <div style="margin-bottom: 15px;">
+                    <input type="text" id="dorkSearchQuery" class="cyber-input" placeholder="🔍 Search/Filter Dorks by keyword or operator (e.g., drive, config, mkv)..." oninput="renderDorkGrid()">
+                </div>
+
+                <div id="dorkCategoryTabs" class="nav-tabs" style="margin-bottom: 20px; border-bottom: 1px solid rgba(0,255,0,0.2); padding-bottom: 10px;"></div>
+
+                <div id="dorksGridContainer" class="dork-grid-container"></div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 3: 700+ EXTENSION HUB ==================== -->
+        <section id="page-extensions" class="app-page">
+            <div class="cyber-panel">
+                <div class="panel-header">
+                    <span class="panel-title">🔍 700+ FILE EXTENSION INTELLIGENCE HUB</span>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <input type="text" id="extFilterInput" class="cyber-input" placeholder="🔍 Filter extensions (e.g. pdf, apk, env, sql, mkv, docx)..." onkeyup="filterExtensionsGrid()">
+                </div>
+
+                <div id="extensionCategoriesContainer"></div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 4: OSINT TOOLKIT & BUILDER ==================== -->
+        <section id="page-toolkit" class="app-page">
+            <div class="cyber-panel">
+                <div class="panel-header">
+                    <span class="panel-title">🛠️ VISUAL CUSTOM DORK BUILDER</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 15px;">
+                    <div>
+                        <label style="font-size: 0.8rem; color: var(--electric-blue);">Target Site (`site:`):</label>
+                        <input type="text" id="builderSite" class="cyber-input" placeholder="e.g. github.com, drive.google.com">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8rem; color: var(--electric-blue);">File Extension (`filetype:`):</label>
+                        <input type="text" id="builderFiletype" class="cyber-input" placeholder="e.g. pdf, env, sql">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8rem; color: var(--electric-blue);">URL Path (`inurl:`):</label>
+                        <input type="text" id="builderInurl" class="cyber-input" placeholder="e.g. admin, wp-content">
+                    </div>
+                    <div>
+                        <label style="font-size: 0.8rem; color: var(--electric-blue);">Page Title (`intitle:`):</label>
+                        <input type="text" id="builderIntitle" class="cyber-input" placeholder="e.g. index of, login">
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <button id="btnAssembleDork" class="btn-action-run" style="padding: 10px;">Assemble Dork String</button>
+                    <button class="btn-action-multi" onclick="runAssembledDork()" style="padding: 10px;">🚀 Launch Assembled Dork</button>
+                </div>
+
+                <input type="text" id="builderDorkPreview" class="cyber-input" readonly placeholder="Assembled Dork Preview will appear here...">
+            </div>
+
+            <div class="cyber-panel">
+                <div class="panel-header">
+                    <span class="panel-title">🔑 HASH IDENTIFIER & RECON DECODER</span>
+                </div>
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input type="text" id="hashInputVal" class="cyber-input" placeholder="Paste MD5, SHA1, SHA256, or Base64 string here...">
+                    <button id="btnIdentifyHash" class="btn-action-run" style="width: 150px;">Identify Hash</button>
+                </div>
+                <div id="hashOutputResult" style="color: var(--gold); font-size: 0.9rem;"></div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 5: TERMINAL CLI ==================== -->
+        <section id="page-terminal" class="app-page">
+            <div class="cyber-panel">
+                <div class="panel-header">
+                    <span class="panel-title">💻 CYBER TERMINAL INTERACTIVE CLI</span>
+                </div>
+
+                <div class="terminal-window">
+                    <div id="terminalLogs" class="terminal-logs">
+                        <div class="terminal-line out">CyberDork Interactive Terminal v7.0 Loaded.</div>
+                        <div class="terminal-line out">Type 'help' to display supported commands. Default target: 9898048483.</div>
+                    </div>
+                    <div class="terminal-input-row">
+                        <span class="terminal-prompt">cyberdork@osint:~$</span>
+                        <input type="text" id="terminalCommandInput" class="cyber-input" style="border: none; padding: 4px;" placeholder="Type command here..." autofocus>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 6: PRO SERVICES ==================== -->
+        <section id="page-prohub" class="app-page">
+            <div class="pro-hub-grid">
+                <div class="pro-card">
+                    <h3>⚡ BUY PRO APPOINTMENT</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">Direct WhatsApp Consultation for custom dorking scripts and OSINT audits.</p>
+                    <button class="btn-gold" onclick="window.open('https://wa.me/919898048483', '_blank')">WhatsApp Chat</button>
+                </div>
+
+                <div class="pro-card">
+                    <h3>🪙 DONATION SYSTEM</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">Support open-source OSINT development and database updates.</p>
+                    <button class="btn-gold" onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScJ7WjuxEXqdoSlUtxN7NQ8UeKpbEAeA9iIO-IXOmBmYzlLHQ/viewform', '_blank')">Support Project</button>
+                </div>
+
+                <div class="pro-card">
+                    <h3>🛒 OFFICIAL DIGITAL STORE</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 10px;">Browse official security tools, custom software packs, and OSINT guides.</p>
+                    <button class="btn-gold" onclick="window.open('https://wa.me/c/919898048483', '_blank')">Digital Store Catalog</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PAGE 7: AUTH & HISTORY ==================== -->
+        <section id="page-auth" class="app-page">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div class="cyber-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">🔐 AUTHENTICATION</span>
+                    </div>
+
+                    <div id="authStatusBanner" style="color: var(--gold); margin-bottom: 15px; font-weight: bold;"></div>
+
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                        <input type="text" id="loginUsernameInput" class="cyber-input" placeholder="Username (Default: admin)">
+                        <input type="password" id="loginPasswordInput" class="cyber-input" placeholder="Password (Default: admin)">
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn-action-run" onclick="handleUserLoginSubmit()">Login</button>
+                            <button class="btn-action-multi" onclick="handleUserRegisterSubmit()">Register</button>
+                        </div>
+                        <button class="btn-cyber-small" onclick="handleUserLogout()" style="margin-top: 10px;">Logout Active Session</button>
+                    </div>
+                </div>
+
+                <div class="cyber-panel">
+                    <div class="panel-header">
+                        <span class="panel-title">📜 SEARCH HISTORY LOGS</span>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <button class="btn-cyber-small" onclick="triggerExportJSON()">Export JSON</button>
+                        <button class="btn-cyber-small" onclick="triggerExportCSV()">Export CSV</button>
+                        <button class="btn-cyber-small" style="border-color: var(--neon-pink); color: var(--neon-pink);" onclick="triggerClearHistory()">Clear History</button>
+                    </div>
+
+                    <div id="historyLogsList" style="max-height: 300px; overflow-y: auto;"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

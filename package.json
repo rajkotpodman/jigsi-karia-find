@@ -1,0 +1,16 @@
+{
+  "name": "cyberdork-osint-suite",
+  "version": "7.0.0",
+  "description": "CyberDork OSINT Suite v7.0 - Ultimate Matrix Edition",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3000 --host 0.0.0.0",
+    "build": "vite build",
+    "lint": "vite build",
+    "preview": "vite preview --port 3000 --host 0.0.0.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}
